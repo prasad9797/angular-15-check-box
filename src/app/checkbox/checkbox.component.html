@@ -1,0 +1,19 @@
+<form [formGroup]="movieForm" *ngIf="movieList$ | async as movieList">
+  <label>
+    <input type="checkbox" formControlName="selectAll" />Select All
+  </label>
+  <div formArrayName="movies">
+    <div *ngFor="let movie of movieList; let idx = index">
+      <label>
+        <input type="checkbox" [formControlName]="idx" /> {{ movie }}
+      </label>
+    </div>
+  </div>
+
+  <button (click)="clear()">Clear</button>
+</form>
+
+<h3>Display Movies</h3>
+<ul>
+  <li *ngFor="let movie of selectedMovies()">{{ movie }}</li>
+</ul>
